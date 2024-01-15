@@ -1,5 +1,5 @@
 const express = require("express");
-// const routes = require("./routes");
+const routes = require("./routes/index.routes.js");
 
 // Helpers
 // const { errorHandler } = require("./helpers/express");
@@ -11,12 +11,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hola</h1>");
-});
-
 // Routes
-// app.use("/", routes);
+app.use("/", routes);
 
 // // Error handler
 // app.use(errorHandler());
