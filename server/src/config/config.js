@@ -1,11 +1,10 @@
-const { SALT_ROUNDS, PRIVATE_KEY, EXPIRES_IN } = process.env;
-
+const { SALT_ROUNDS, PRIVATE_KEY, MAX_AGE } = process.env;
 module.exports = {
   HASH: {
     SALT_ROUNDS,
   },
   JWT: {
     PRIVATE_KEY,
-    EXPIRES_IN,
+    MAX_AGE,
   },
 };
