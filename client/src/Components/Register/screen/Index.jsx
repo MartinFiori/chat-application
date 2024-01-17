@@ -8,14 +8,17 @@ import {
   OutlinedInput,
   Box,
   Typography,
+  Alert
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { register } from "../../../services/auth";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
-  const [registerSuccessfully, setRegisterSuccessfully] = useState(false);
-  const [fetchError, setFetchError] = useState(false);
+  const [fetchStatus, setFetchStatus] = useState({
+    error: null,
+    description: null
+  })
   const [inputs, setInputs] = useState({
     nickname: "",
     email: "",
@@ -35,12 +38,23 @@ export default function Register() {
   };
 
   const handleSubmit = async () => {
-    setFetchError(false);
+    setFetchStatus({
+      error: null, description: null
+    })
     const { error, description } = await register(inputs);
-    if (error) {
-      setFetchError(true);
-    }
+    setFetchStatus({ error, description })
   };
+
+  const renderFetchMessage = () => {
+    if (fetchStatus.error === null) return;
+    const isErrorMessage = {
+      'true': "error",
+      "false": "success"
+    }
+    return <Alert severity={isErrorMessage[JSON.stringify(fetchStatus.error)]}>
+      {fetchStatus.description}
+    </Alert>
+  }
 
   return (
     <Box
@@ -117,6 +131,7 @@ export default function Register() {
             inputProps={{ style: { out: "var(--orange) !important" } }}
           />
         </FormControl>
+        {renderFetchMessage()}
         <Button
           onClick={handleSubmit}
           variant="contained"

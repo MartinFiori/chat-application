@@ -21,6 +21,6 @@ export async function getMessages() {
   });
 
   const data = await res.json();
-  if (data.error) return "Ups";
+  if (data.error) return [];
   return data.resultados;
 }
