@@ -11,6 +11,7 @@ import {
   Alert
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+// import { Link } from 'react-router-dom'
 import { register } from "../../../services/auth";
 
 export default function Register() {
@@ -43,6 +44,7 @@ export default function Register() {
     })
     const { error, description } = await register(inputs);
     setFetchStatus({ error, description })
+
   };
 
   const renderFetchMessage = () => {
