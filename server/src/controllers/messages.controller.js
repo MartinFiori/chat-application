@@ -1,6 +1,7 @@
 const { successMessage } = require("../utils/resMessages/resMessages");
+const { io } = require("../events.js");
 
-var messages = [];
+var messages = [{ user: "nicok", message: "prueba" }];
 
 function getMessages(req, res) {
   res.status(403).send({ ...successMessage(), resultados: messages });
@@ -8,11 +9,12 @@ function getMessages(req, res) {
 
 function postMessage(req, res) {
   const user = req.user;
-  messages.push({
+  const newMessage = {
     user: user.nickname,
     message: req.body.message,
-  });
-  res.send("se mandó todo");
+  };
+  messages.push(newMessage);
+  res.json(successMessage("Message created"));
 }
 
 module.exports = {

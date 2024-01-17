@@ -1,8 +1,7 @@
 const express = require("express");
 const routes = require("./routes/index.routes.js");
+const morgan = require("morgan");
 
-// Helpers
-// const { errorHandler } = require("./helpers/express");
 const cors = require("cors");
 
 const app = express();
@@ -10,11 +9,9 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cors());
+app.use(morgan("dev"));
 
 // Routes
 app.use("/", routes);
-
-// // Error handler
-// app.use(errorHandler());
 
 module.exports = app;
