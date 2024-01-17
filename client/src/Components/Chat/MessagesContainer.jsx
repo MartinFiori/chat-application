@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-
-export default function MessagesContainer({ messagesList }) {
-
+export default function MessagesContainer({ messages }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>{
-      messagesList.map(el => <>
-        {el.user}: {el.message}
-      </>
-      )}</div>
-  )
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {messages?.map((el) => (
+        <p>
+          {el.nickname}: {el.message}
+        </p>
+      ))}
+    </div>
+  );
 }

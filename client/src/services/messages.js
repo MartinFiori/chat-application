@@ -1,16 +1,16 @@
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1uZkBqcGhsaW9ucy5jb20iLCJuaWNrbmFtZSI6Im1uZiIsInBhc3N3b3JkIjoiJDJiJDEwJHFvN0sycHNzTFBCZU1Tb3ZiVGdja2VqWllTR3IvdjA2a1dzZ3Z6QTNlUHc5U3R0YTNGZllTIiwiaWF0IjoxNzA1NDM0MTQxLCJleHAiOjE3MDU0Mzc3NDF9._wjKoLgb23SkzcXp5PSUV1BAaqQ1OlPCsSy3JR8FRy8";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1uZkBqcGhsaW9ucy5jb20iLCJuaWNrbmFtZSI6Im1uZiIsInBhc3N3b3JkIjoiJDJiJDEwJFlrT3J3VmZwVDBzT0RjMjZEOHJBME96VUtyak0wNDVBLnh6SlhsSDlSRXpZd0llbEc2Qm1pIiwiaWF0IjoxNzA1NDUzNjI0LCJleHAiOjE3MDU0NTk2MjR9.eQybUFL6-wSiAzh4pN-c_GvrftCFU_qh7npFxLAVUCg";
 
 export async function postMessage(message) {
   const res = await fetch("http://localhost:8080/messages", {
     method: "POST",
     headers: {
       authorization: "Bearer " + token,
+      "Content-Type": "application/json",
     },
-    body: message,
+    body: JSON.stringify(message),
   });
-  const data = await res.json();
-  console.log({ data });
+  await res.json();
 }
 
 export async function getMessages() {
@@ -21,5 +21,6 @@ export async function getMessages() {
   });
 
   const data = await res.json();
+  if (data.error) return "Ups";
   return data.resultados;
 }
