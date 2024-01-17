@@ -1,9 +1,14 @@
 import React from "react";
 
 import Rutas from "./Rutas/Rutas";
+import { AuthProvider } from "./Context/AuthContext";
 
 function App() {
-  return <Rutas />;
+  return (
+    <AuthProvider>
+      <Rutas />
+    </AuthProvider>
+  );
   // return <Rutas />;
 }
 
