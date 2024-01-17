@@ -1,0 +1,21 @@
+:root {
+  --black: #0f0e17;
+  --orange: #ff8906;
+  --white: #fffffe;
+  --gray: #a7a9be;
+  --secondary-color: #f25f4c;
+}
+:root {
+  --main-color: hotpink;
+  --pane-padding: 5px 42px;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--black);
+  /* background: red; */
+}

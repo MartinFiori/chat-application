@@ -1,11 +1,10 @@
-// Express App
+const PORT = process.env.PORT || 8080;
 const app = require("./express.js");
 
 // Socket Server
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const httpServer = createServer(app);
-const PORT = process.env.PORT || 8080;
 const io = new Server(httpServer, {
   cors: {
     origin: "*",
@@ -13,8 +12,10 @@ const io = new Server(httpServer, {
 });
 
 // Events initialization
+io.on("connection", (socket) => {
+  require("./events.js")(socket, io);
+});
 
-// Server listener
 httpServer.listen(PORT, () => {
   console.log("");
   console.log("-".repeat(100));

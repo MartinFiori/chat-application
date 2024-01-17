@@ -34,6 +34,7 @@ function register(req, res) {
 }
 
 function login(req, res) {
+  console.log(req.body);
   const { email, nickname, password } = req.body;
   const [trimmedEmail, trimmedNickname, trimmedPassword] = [
     email.trim(),
@@ -51,7 +52,7 @@ function login(req, res) {
       .status(401)
       .send(errorMessage("Invalid password. Pleas try again"));
   const token = jwt.sign(user_found, JWT.PRIVATE_KEY, {
-    expiresIn: Number(JWT.MAX_AGE),
+    expiresIn: JWT.MAX_AGE,
   });
   req.headers["authorization"] = token;
   res.send({ ...successMessage("User loged correctly"), token });
