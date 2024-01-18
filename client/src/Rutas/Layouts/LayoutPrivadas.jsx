@@ -8,7 +8,7 @@ export default function LayoutPrivadas() {
   if (!logged) return <Navigate to="/login" />;
 
   return (
-    <main>
+    <main style={{ maxWidth: '100vw' }}>
       {/* <Navbar /> */}
       <Outlet />;
     </main>

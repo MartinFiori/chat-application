@@ -4,6 +4,8 @@ import useAuth from "../../../Hooks/useAuth";
 
 export default function ChatScreen() {
   const { user } = useAuth();
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+
+  }, []);
   return <ChatContainer user={user} />;
 }

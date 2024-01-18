@@ -14,13 +14,13 @@ export default function ChatFooter({ handleEmitMessage }) {
     setMessage("");
   };
   return (
-    <form className="form" onSubmit={handlePostMessage}>
+    <form className="form" onSubmit={handlePostMessage} style={{ width: '100%' }}>
       <Grid
         container
         spacing={2}
         direction="row"
-        justify="flex-start"
-        alignItems="flex-start"
+        justifyContent='space-between'
+      // alignItems="flex-start"
       >
         <Grid item xs={10}>
           <Input
