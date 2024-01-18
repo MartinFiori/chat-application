@@ -34,14 +34,9 @@ function register(req, res) {
 }
 
 function login(req, res) {
-  console.log(req.body);
-  const { email, nickname, password } = req.body;
-  const [trimmedEmail, trimmedNickname, trimmedPassword] = [
-    email.trim(),
-    nickname.trim(),
-    password.trim(),
-  ];
-  if (areValuesEmpty([trimmedEmail, trimmedNickname, trimmedPassword])) {
+  const { email, password } = req.body;
+  const [trimmedEmail, trimmedPassword] = [email.trim(), password.trim()];
+  if (areValuesEmpty([trimmedEmail, trimmedPassword])) {
     return res.status(400).send(errorMessage("Please complete all inputs"));
   }
   const user_found = users.find((user) => user.email === trimmedEmail);
@@ -51,11 +46,13 @@ function login(req, res) {
     return res
       .status(401)
       .send(errorMessage("Invalid password. Pleas try again"));
-  const token = jwt.sign(user_found, JWT.PRIVATE_KEY, {
-    expiresIn: JWT.MAX_AGE,
+  const token = jwt.sign(user_found, JWT.PRIVATE_KEY);
+  // req.headers["authorization"] = token;
+  req.user = user_found;
+  res.send({
+    ...successMessage("User loged correctly"),
+    user: { token, nickname: user_found.nickname },
   });
-  req.headers["authorization"] = token;
-  res.send({ ...successMessage("User loged correctly"), token });
 }
 
 module.exports = { register, login };
