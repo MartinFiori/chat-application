@@ -24,3 +24,5 @@ httpServer.listen(PORT, () => {
   console.log("Último cambio: " + new Date().toString().slice(16, 24) + "hs");
   console.log("");
 });
+
+module.exports = httpServer;
