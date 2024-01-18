@@ -14,7 +14,6 @@ function isAuth(req, res, next) {
   if (!token) return res.status(403).send(errorMessage("Missing jsonwebtoken"));
   jwt.verify(token, JWT.PRIVATE_KEY, (err, decoded) => {
     if (err) {
-      console.log(err);
       return res.status(400).json(errorMessage(err.message));
     }
     req.user = { ...decoded, token };

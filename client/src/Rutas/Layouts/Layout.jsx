@@ -1,11 +1,13 @@
 import React from "react";
-import NavBar from "../../Components/Navbar/Navbar";
+import { Outlet } from "react-router-dom";
+// import NavBar from "../../Components/Navbar/Navbar";
 
-export default function Layout({ children }) {
+export default function Layout() {
   return (
-    <div>
-      <NavBar />
-      {children}
-    </div>
+    <>
+      <h1 style={{ color: "white" }}>navbar</h1>
+      {/* <NavBar /> */}
+      <Outlet />
+    </>
   );
 }
