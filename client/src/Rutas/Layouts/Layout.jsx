@@ -1,16 +1,13 @@
 import React from "react";
-import { Outlet } from 'react-router-dom'
-import NavBar from "../../Components/Navbar/Navbar";
-import useAuth from '../../Hooks/useAuth'
+import { Outlet } from "react-router-dom";
+// import NavBar from "../../Components/Navbar/Navbar";
 
-export default function Layout({ }) {
-  const { logged } = useAuth()
-  console.log(logged)
+export default function Layout() {
   return (
-    <div>
+    <>
+      <h1 style={{ color: "white" }}>navbar</h1>
       {/* <NavBar /> */}
-      <h1 style={{ color: 'white' }}>navbar</h1>
       <Outlet />
-    </div>
+    </>
   );
 }

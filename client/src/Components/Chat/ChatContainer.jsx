@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import MessagesContainer from "./MessagesContainer";
 import ChatFooter from "./ChatFooter";
-import { getMessages } from "../../services/messages";
+import { getMessages } from "../../helpers/messages";
 import { io } from "socket.io-client";
-const socket = io("http://localhost:8080", {
-  auth: { username: "martinacho" },
-});
 
-export default function ChatContainer() {
+export default function ChatContainer({ user }) {
   const [messagesList, setMessagesList] = useState([]);
+  const socket = io("http://localhost:8080", {
+    auth: { nickname: user.nickname },
+  });
   React.useEffect(() => {
     getAndSet();
   }, []);
 
   const handleEmitMessage = (message) => {
+    console.log(message);
     socket.emit("new-message", { message });
   };
   const getAndSet = async () => {

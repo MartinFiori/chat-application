@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input, Grid } from "@mui/joy";
-import { postMessage } from "../../services/messages";
+import { postMessage } from "../../helpers/messages";
 
 export default function ChatFooter({ handleEmitMessage }) {
   const [message, setMessage] = useState("");
